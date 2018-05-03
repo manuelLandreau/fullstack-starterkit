@@ -1,0 +1,6 @@
+framework:
+    router:
+        strict_requirements: ~
+
+api_login_check:
+    path: /api/login_check
