@@ -2,97 +2,183 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource
+ * @see https://symfony.com/doc/master/security/entity_provider.html#security-config-entity-provider
+ * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface, EquatableInterface
+class User implements AdvancedUserInterface
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=254, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
+     * @ORM\Column(type="string", length=64)
      */
     private $password;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="is_active", type="boolean")
      */
-    private $salt;
+    private $isActive = true;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @return mixed
      */
-    private $roles;
-
-    public function __construct($username, $password, $salt, array $roles)
+    public function getId()
     {
-        $this->username = $username;
-        $this->password = $password;
-        $this->salt = $salt;
-        $this->roles = $roles;
+        return $this->id;
     }
 
-    public function getRoles()
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
     {
-        return $this->roles;
+        $this->id = $id;
     }
 
-    public function getPassword()
+    /**
+     * @return mixed
+     */
+    public function getEmail()
     {
-        return $this->password;
+        return $this->email;
     }
 
-    public function getSalt()
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
     {
-        return $this->salt;
+        $this->email = $email;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUsername()
     {
         return $this->username;
     }
 
-    public function eraseCredentials()
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
     {
+        $this->username = $username;
     }
 
-    public function isEqualTo(UserInterface $user)
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
     {
-        if (!$user instanceof User) {
-            return false;
-        }
+        return $this->plainPassword;
+    }
 
-        if ($this->password !== $user->getPassword()) {
-            return false;
-        }
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
 
-        if ($this->salt !== $user->getSalt()) {
-            return false;
-        }
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
 
-        if ($this->username !== $user->getUsername()) {
-            return false;
-        }
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
 
+    /**
+     * @see https://symfony.com/doc/master/security/entity_provider.html
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAccountNonExpired(): bool
+    {
         return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAccountNonLocked(): bool
+    {
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCredentialsNonExpired(): bool
+    {
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->isActive;
+    }
+
+    public function eraseCredentials()
+    {
+        return null;
     }
 }

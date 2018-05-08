@@ -1,12 +1,19 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
     providers:
         # in_memory: { memory: ~ }
-        webservice:
-            id: App\Security\User\WebserviceUserProvider
-
-    encoders:
-            App\Security\User\WebserviceUser: bcrypt
+#        db_provider:
+#            entity:
+#                class: App\Entity\User
+#                # property: username
+#                # if you're using multiple entity managers
+#                # manager_name: customer
+        app.provider:
+            id: App\Security\UserProvider
 
     firewalls:
         dev:
@@ -16,8 +23,11 @@ security:
             pattern:  ^/api/login
             stateless: true
             anonymous: true
+            provider: app.provider
             form_login:
                 check_path:               /api/login_check
+                username_parameter:       username
+                password_parameter:       password
                 success_handler:          lexik_jwt_authentication.handler.authentication_success
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
                 require_previous_session: false
@@ -40,5 +50,8 @@ security:
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     access_control:
-            - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-            - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/articles, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
+        - { path: ^/articles, roles: IS_AUTHENTICATED_FULLY, methods: [POST, PUT] }
+        - { path: ^/comments, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
+        - { path: ^/comments, roles: IS_AUTHENTICATED_FULLY, methods: [POST, PUT] }

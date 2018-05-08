@@ -6,8 +6,9 @@ Feature: Manage articles and their comments
 
   # the "@createSchema" annotation provided by API Platform creates a temporary SQLite database for testing the API
   @createSchema
+  @login
   Scenario: Create a article
-    When I add "Content-Type" header equal to "application/ld+json"
+    When I add "Content-Type" header equal to "application/json"
     And I add "Accept" header equal to "application/ld+json"
     And I send a "POST" request to "/articles" with body:
     """
@@ -35,6 +36,7 @@ Feature: Manage articles and their comments
       "comments": []
     }
     """
+  @logout
 
   Scenario: Retrieve the article list
     When I add "Accept" header equal to "application/ld+json"
@@ -63,7 +65,7 @@ Feature: Manage articles and their comments
       "hydra:totalItems": 1
     }
     """
-
+  @login
   Scenario: Throw errors when a post is invalid
     When I add "Content-Type" header equal to "application/ld+json"
     And I add "Accept" header equal to "application/ld+json"
@@ -94,19 +96,21 @@ Feature: Manage articles and their comments
       ]
     }
     """
+  @logout
 
   # The "@dropSchema" annotation must be added on the last scenario of the feature file to drop the temporary SQLite database
-  @dropSchema
+
+  @login
   Scenario: Add a comment
     When I add "Content-Type" header equal to "application/ld+json"
     When I add "Accept" header equal to "application/ld+json"
     And I send a "POST" request to "/comments" with body:
     """
     {
+      "article": "articles/1",
       "body": "Must have!",
       "author": "Foo Bar",
-      "publicationDate": "2016-01-01",
-      "article": "articles/1"
+      "publicationDate": "2016-01-01"
     }
     """
     Then the response status code should be 201
@@ -115,14 +119,15 @@ Feature: Manage articles and their comments
     And the JSON should be equal to:
     """
     {
-      "@context": "/contexts/Comment",
-      "@id": "/comments/1",
-      "@type": "Comment",
-      "id": 1,
-      "article": "/articles/1",
-      "body": "Must have!",
-      "author": "Foo Bar",
-      "publicationDate": "2016-01-01T00:00:00+00:00",
-      "article": "articles/1"
+        "@context": "/contexts/Comment",
+        "@id": "/comments/1",
+        "@type": "Comment",
+        "id": 2,
+        "article": "/articles/1",
+        "body": "Must have!",
+        "author": "Foo Bar",
+        "publicationDate": "2016-01-01T00:00:00+00:00"
     }
     """
+  @logout
+  @dropSchema

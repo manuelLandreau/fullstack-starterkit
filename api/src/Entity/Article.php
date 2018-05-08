@@ -8,7 +8,17 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource
+ * @ApiResource(
+ *     attributes={"access_control"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
+ *     collectionOperations={
+ *         "get"={"access_control"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
+ *         "post"={"access_control"="is_granted('IS_AUTHENTICATED_FULLY')", "access_control_message"="Only authentified users can add articles."}
+ *     },
+ *     itemOperations={
+ *         "get"={"access_control"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
+ *         "put"={"access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object.owner == user", "access_control_message"="Sorry, but you are not the article owner."}
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
 class Article
@@ -49,7 +59,8 @@ class Article
      */
     private $comments;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->comments = new ArrayCollection();
     }
 
