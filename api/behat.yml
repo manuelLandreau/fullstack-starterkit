@@ -1,0 +1,32 @@
+default:
+    suites:
+        default:
+            paths: [ '%paths.base%/features' ]
+            contexts:
+                - FeatureContext: { doctrine: '@doctrine', 'jwtManager': '@lexik_jwt_authentication.jwt_manager' }
+                - Behat\MinkExtension\Context\MinkContext
+                - behatch:context:browser:
+                    timeout: 1
+                - behatch:context:debug:
+                    screenshotDir: "."
+                - behatch:context:json:
+                    evaluationMode: javascript
+                - behatch:context:rest
+                - behatch:context:system:
+                    root: "."
+                - behatch:context:table
+                - behatch:context:xml
+
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+                env: "test"
+                debug: "true"
+        Behatch\Extension: ~
+        Behat\MinkExtension:
+            base_url:  'http://192.168.99.100:8080/'
+            sessions:
+                default:
+                    goutte: ~

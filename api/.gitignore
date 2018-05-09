@@ -9,12 +9,12 @@
 /helm/api/requirements.lock
 
 ###> friendsofphp/php-cs-fixer ###
-.php_cs
+__.php_cs
 .php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
 
 ###> behat/symfony2-extension ###
-behat.yml
+__behat.yml
 ###< behat/symfony2-extension ###
 
 ###> lexik/jwt-authentication-bundle ###
