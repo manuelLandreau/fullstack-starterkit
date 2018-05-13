@@ -52,6 +52,6 @@ security:
     access_control:
         - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/articles, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
-        - { path: ^/articles, roles: IS_AUTHENTICATED_FULLY, methods: [POST, PUT] }
+        - { path: ^/articles, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST, PUT] }
         - { path: ^/comments, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
-        - { path: ^/comments, roles: IS_AUTHENTICATED_FULLY, methods: [POST, PUT] }
+        - { path: ^/comments, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST, PUT] }
