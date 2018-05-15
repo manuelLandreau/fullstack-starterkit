@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d7da454-9709-49c9-b19f-8b1aa5c33e97" name="Default" comment="API: makerBundle install">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/behat.yml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.env" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/.env" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/.env" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/.gitignore" afterPath="$PROJECT_DIR$/api/.gitignore" />
-    </list>
+    <list default="true" id="3d7da454-9709-49c9-b19f-8b1aa5c33e97" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -460,7 +453,7 @@
       <workItem from="1525421611836" duration="11111000" />
       <workItem from="1525438289476" duration="8202000" />
       <workItem from="1525809676562" duration="860000" />
-      <workItem from="1525860748301" duration="1925000" />
+      <workItem from="1525860748301" duration="2561000" />
     </task>
     <task id="LOCAL-00001" summary="API: Authentication/registration stuff + functional tests in progress">
       <created>1525800927054</created>
@@ -476,11 +469,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525871021964</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="API: .env issues ok">
+      <created>1525871569521</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1525871569521</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74364000" />
+    <option name="totallyTimeSpent" value="75000000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -514,7 +514,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="API: Authentication/registration stuff + functional tests in progress" />
     <MESSAGE value="API: makerBundle install" />
-    <option name="LAST_COMMIT_MESSAGE" value="API: makerBundle install" />
+    <MESSAGE value="API: .env issues ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="API: .env issues ok" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
