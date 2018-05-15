@@ -36,7 +36,6 @@ Feature: Manage articles and their comments
       "comments": []
     }
     """
-  @logout
 
   Scenario: Retrieve the article list
     When I add "Accept" header equal to "application/ld+json"
@@ -65,7 +64,7 @@ Feature: Manage articles and their comments
       "hydra:totalItems": 1
     }
     """
-  @login
+
   Scenario: Throw errors when a post is invalid
     When I add "Content-Type" header equal to "application/ld+json"
     And I add "Accept" header equal to "application/ld+json"
@@ -96,11 +95,9 @@ Feature: Manage articles and their comments
       ]
     }
     """
-  @logout
 
   # The "@dropSchema" annotation must be added on the last scenario of the feature file to drop the temporary SQLite database
 
-  @login
   Scenario: Add a comment
     When I add "Content-Type" header equal to "application/ld+json"
     When I add "Accept" header equal to "application/ld+json"
