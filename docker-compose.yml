@@ -16,6 +16,8 @@ services:
       - ./api:/srv/api:rw,cached
       # If you develop on Linux, uncomment the following line to use a bind-mounted host directory instead
       # - ./api/var:/srv/api/var:rw
+    networks:
+      - test
 
   api:
     image: ${CONTAINER_REGISTRY_BASE}/nginx
@@ -25,11 +27,13 @@ services:
       cache_from:
         - ${CONTAINER_REGISTRY_BASE}/nginx
     depends_on:
-      - php
+        - php
     volumes:
       - ./api/public:/srv/api/public:ro
     ports:
       - "8080:80"
+    networks:
+      - test
 
   cache-proxy:
     image: ${CONTAINER_REGISTRY_BASE}/varnish
@@ -60,6 +64,8 @@ services:
       # - ./docker/db/data:/var/lib/postgresql/data:rw
     ports:
       - "5432:5432"
+    networks:
+      - test
 
   client:
     # Use a static website hosting service in production
@@ -110,3 +116,7 @@ services:
 
 volumes:
   db-data: {}
+
+networks:
+  test:
+    driver: bridge

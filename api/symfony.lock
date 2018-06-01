@@ -104,6 +104,9 @@
     "fabpot/goutte": {
         "version": "v3.2.2"
     },
+    "friends-of-behat/symfony-extension": {
+        "version": "v1.2.0"
+    },
     "friendsofphp/php-cs-fixer": {
         "version": "2.2",
         "recipe": {
@@ -152,6 +155,9 @@
             "ref": "7b6cbc842f8cd3d550815247d12294f6f304a8c4"
         }
     },
+    "nikic/php-parser": {
+        "version": "v4.0.1"
+    },
     "php-cs-fixer/diff": {
         "version": "v1.2.0"
     },
@@ -183,13 +189,13 @@
         "version": "v4.0.3"
     },
     "symfony/browser-kit": {
-        "version": "v4.0.9"
+        "version": "v4.0.10"
     },
     "symfony/cache": {
         "version": "v4.0.3"
     },
     "symfony/class-loader": {
-        "version": "v3.4.9"
+        "version": "v3.4.10"
     },
     "symfony/config": {
         "version": "v4.0.3"
@@ -204,7 +210,7 @@
         }
     },
     "symfony/css-selector": {
-        "version": "v3.4.9"
+        "version": "v3.4.10"
     },
     "symfony/debug": {
         "version": "v4.0.3"
@@ -216,10 +222,10 @@
         "version": "v4.0.3"
     },
     "symfony/dom-crawler": {
-        "version": "v4.0.9"
+        "version": "v4.0.10"
     },
     "symfony/dotenv": {
-        "version": "v4.0.9"
+        "version": "v4.0.10"
     },
     "symfony/event-dispatcher": {
         "version": "v4.0.3"
@@ -263,8 +269,20 @@
     "symfony/lts": {
         "version": "4-dev"
     },
+    "symfony/maker-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
+    },
     "symfony/options-resolver": {
         "version": "v4.0.3"
+    },
+    "symfony/polyfill-ctype": {
+        "version": "v1.8.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.6.0"

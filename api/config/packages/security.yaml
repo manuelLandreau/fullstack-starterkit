@@ -33,11 +33,13 @@ security:
                 require_previous_session: false
 
         api:
-            pattern:   ^/api
+            pattern:   ^/
             stateless: true
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
+            # provider: app.provider
+
         main:
             anonymous: ~
 
@@ -51,7 +53,3 @@ security:
 
     access_control:
         - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/articles, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
-        - { path: ^/articles, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST, PUT] }
-        - { path: ^/comments, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
-        - { path: ^/comments, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST, PUT] }

@@ -1,15 +1,5 @@
 # API
 
-Generate the SSH keys (for the lexik-jwt authentication):
+The API will be here.
 
-`
-$ mkdir config/jwt
-`
-
-`
-$ openssl genrsa -out var/jwt/private.pem -aes256 4096
-`
-
-`
-$ openssl rsa -pubout -in var/jwt/private.pem -out config/jwt/public.pem
-`
+Refer to the [Getting Started Guide](https://api-platform.com/docs/distribution) for more information.
